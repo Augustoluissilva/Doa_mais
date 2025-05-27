@@ -42,7 +42,7 @@ const LoginPage = () => {
       const data = await response.json();
       
       if (response.ok) {
-        navigate('/'); // Redireciona para a tela inicial após login
+        navigate('/Home'); // Redireciona para a tela inicial após login
       } else {
         alert('Erro ao fazer login: ' + (data.message || 'Credenciais inválidas'));
       }
