@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaMapMarkerAlt, FaNewspaper, FaHeartbeat } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaNewspaper, FaHeartbeat } from 'react-icons/fa';
 import './LandingPage.css';
 
 function Home() {
@@ -81,7 +81,7 @@ function Home() {
       <nav className="simple-navbar">
         <div className="navbar-content">
           <div className="navbar-logo-container">
-            <img src="/doa+02.png" alt="DOA+" className="navbar-logo" />
+            <img src="/images/doa+02.png" alt="DOA+" className="navbar-logo" />
           </div>
           <div className="navbar-links">
             <a href="#inicio">Inicio</a>
