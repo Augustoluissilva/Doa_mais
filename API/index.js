@@ -1,83 +1,90 @@
 import express from 'express';
 import cors from 'cors';
+import pool from './db.js';
 import userRoutes from './routes/users.js';
 import appointmentRoutes from './routes/appointments.js';
-import { db } from './db.js';
+import authRoutes from './routes/auth.js';
 
 const app = express();
 
 // Configuração do CORS
-const corsOptions = {
-  origin: 'http://localhost:3000', // Permite apenas requisições do frontend
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
-  allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
-  credentials: true // Permite envio de credenciais (cookies, tokens)
-};
-
-app.use(cors(corsOptions));
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+}));
 
 // Middlewares
-app.use(express.json()); // Para parsing de application/json
-app.use(express.urlencoded({ extended: true })); // Para parsing de application/x-www-form-urlencoded
+app.use('/auth', authRoutes);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+//DEFININDO ROTA RAIZ
+app.get('/', (req, res) => {
+    res.status(200).json({ 
+        status: 'ok',
+        message: 'Bem-vindo à API!'
+    });
+});
 
 // Rotas
 app.use('/users', userRoutes);
 app.use('/appointments', appointmentRoutes);
 
-// Rota de saúde da API
-app.get('/health', (req, res) => {
-  // Verifica a conexão com o banco de dados
-  db.ping((err) => {
-    if (err) {
-      return res.status(500).json({ 
-        status: 'error',
-        message: 'Database connection failed',
-        error: err.message
-      });
+// Rota de saúde
+app.get('/health', async (req, res) => {
+    try {
+        await pool.query('SELECT 1');
+        res.status(200).json({ 
+            status: 'ok',
+            message: 'API e banco de dados operacionais',
+            timestamp: new Date().toISOString()
+        });
+    } catch (err) {
+        res.status(500).json({ 
+            status: 'error',
+            message: 'Falha na conexão com o banco de dados',
+            error: err.message
+        });
     }
-    res.status(200).json({ 
-      status: 'ok',
-      message: 'API is running and connected to database',
-      timestamp: new Date().toISOString()
+});
+
+// Rota não encontrada
+app.use((req, res) => {
+    res.status(404).json({ 
+        status: 'error',
+        message: 'Endpoint não encontrado'
     });
-  });
 });
 
-// Rota não encontrada (404)
-app.use((req, res, next) => {
-  res.status(404).json({ 
-    status: 'error',
-    message: 'Endpoint not found'
-  });
-});
-
-// Manipulador de erros global
+// Manipulador de erros
 app.use((err, req, res, next) => {
-  console.error('Error:', err.stack);
-  res.status(500).json({ 
-    status: 'error',
-    message: 'Internal server error',
-    error: process.env.NODE_ENV === 'development' ? err.message : undefined
-  });
+    console.error('Erro:', err.stack);
+    res.status(500).json({ 
+        status: 'error',
+        message: 'Erro interno no servidor',
+        error: process.env.NODE_ENV === 'development' ? err.message : undefined
+    });
 });
 
 // Configuração da porta
 const PORT = process.env.PORT || 3001;
 
 // Inicia o servidor
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+const server = app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
 });
 
-// Manipulador para encerramento gracioso
-process.on('SIGINT', () => {
-  db.end((err) => {
-    if (err) {
-      console.error('Error closing database connection:', err);
-      process.exit(1);
-    }
-    console.log('Database connection closed');
-    process.exit(0);
-  });
-});
+// Encerramento gracioso
+const shutdown = async () => {
+    console.log('Encerrando servidor...');
+    await pool.end();
+    server.close(() => {
+        console.log('Servidor encerrado');
+        process.exit(0);
+    });
+};
+
+process.on('SIGINT', shutdown);
+process.on('SIGTERM', shutdown);

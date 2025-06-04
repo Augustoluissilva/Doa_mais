@@ -1,36 +1,42 @@
-import { db, pool } from '../db.js';
+import pool from '../db.js';
+import bcrypt from 'bcrypt';
 
-export const getUsers = (_, res) => {
-    const q = "SELECT * FROM usuarios";
-
-    db.query(q, (err, data) => {
-        if (err) return res.status(500).json(err);
+export const getUsers = async (_, res) => {
+    try {
+        const [data] = await pool.query("SELECT * FROM usuarios");
         return res.status(200).json(data);
-    });
+    } catch (err) {
+        return res.status(500).json(err);
+    }
 };
 
-// Novo: Verificar se usuário existe por email ou CPF
-export const checkUser = (req, res) => {
-    const { email, cpf } = req.query;
-    const q = "SELECT id FROM usuarios WHERE email = ? OR cpf = ? LIMIT 1";
-
-    db.query(q, [email, cpf], (err, data) => {
-        if (err) return res.status(500).json(err);
+export const checkUser = async (req, res) => {
+    try {
+        const { email, cpf } = req.query;
+        const [data] = await pool.query(
+            "SELECT id FROM usuarios WHERE email = ? OR cpf = ? LIMIT 1",
+            [email, cpf]
+        );
         
         return res.status(200).json({
             exists: data.length > 0,
             id: data.length > 0 ? data[0].id : null
         });
-    });
+    } catch (err) {
+        return res.status(500).json(err);
+    }
 };
 
-// Novo: Criar usuário para agendamento
-export const createUserForAppointment = (req, res) => {
-    const { nome, email, fone, data_nascimento } = req.body;
-    const q = "INSERT INTO usuarios (nome, email, fone, data_nascimento) VALUES (?, ?, ?, ?)";
-
-    db.query(q, [nome, email, fone, data_nascimento], (err, result) => {
-        if (err) return res.status(500).json(err);
+export const createUserForAppointment = async (req, res) => {
+    try {
+        const { nome, email, fone, data_nascimento } = req.body;
+        const [result] = await pool.query(
+            "INSERT INTO usuarios (nome, email, fone, data_nascimento) VALUES (?, ?, ?, ?)",
+            [nome, email, fone, data_nascimento]
+        );
+        
         return res.status(201).json({ id: result.insertId });
-    });
+    } catch (err) {
+        return res.status(500).json(err);
+    }
 };

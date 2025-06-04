@@ -4,7 +4,7 @@ import LandingPage from './components/LandingPage';
 import Home from './components/Home';
 import LoginCadastro from './components/LoginCadastro';
 import AgendamentoDoacao from './components/AgendamentoDoacao';
-import Dashboard from './components/Dashboard'; 
+
 import './App.css';
 
 function App() {
@@ -22,8 +22,7 @@ function App() {
         
         <Route path="/agendar" element={<AgendamentoDoacao />} />
         
-        {/* Nova rota para o Dashboard */}
-        <Route path="/dashboard" element={<Dashboard />} />
+       
         
         {/* Redirecionamento para padronizar a rota de login */}
         <Route path="/LoginCadastro" element={<Navigate to="/login" replace />} />
