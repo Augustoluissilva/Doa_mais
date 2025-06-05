@@ -86,7 +86,7 @@ function Home() {
           <div className="navbar-links">
             <a href="#inicio">Inicio</a>
             <a href="#hemocentros">Hemocentros</a>
-            <a href="#noticias">Noticias</a>
+      
             <a href="#contato">Contato</a>
             <button className="nav-login-btn" onClick={() => navigate('/LoginCadastro')}>Entrar</button>
             <button className="nav-logout-btn" onClick={() => navigate('/logout')}>Sair</button>
@@ -142,24 +142,6 @@ function Home() {
         </button>
       </section>
 
-      {/* News Section */}
-      <section className="news-section" id="noticias">
-        <div className="section-header">
-          <FaNewspaper className="section-icon" />
-          <h2>Notícias</h2>
-        </div>
-        <div className="news-cards">
-          {[1, 2, 3].map((item) => (
-            <div key={item} className="news-card">
-              <div className="news-image-placeholder"></div>
-              <p className="news-excerpt">
-                Lorem ipsum dolor sit amet. Ei est consequent et aperitum qual i ut repellendus enum.
-              </p>
-              <a href="#" className="read-more">Ler mais</a>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* Footer */}
       <footer className="app-footer" id="contato">
