@@ -1,30 +1,44 @@
-import pool from '../db.js';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+import pool from "../db.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export const login = async (req, res) => {
-  const { email, senha } = req.body;
+	const { email, senha } = req.body;
 
-  try {
-    const [users] = await pool.query('SELECT * FROM usuarios WHERE email = ?', [email]);
+	try {
+		const [users] = await pool.query(
+			"SELECT * FROM usuarios WHERE email = ?",
+			[email]
+		);
 
-    if (users.length === 0) {
-      return res.status(401).json({ message: 'Usuário não encontrado' });
-    }
+		if (users.length === 0) {
+			// Mensagem genérica para evitar dar pista sobre usuário inexistente
+			return res.status(401).json({ message: "Credenciais inválidas" });
+		}
 
-    const user = users[0];
-    const senhaValida = await bcrypt.compare(senha, user.senha);
+		const user = users[0];
+		const senhaValida = await bcrypt.compare(senha, user.senha);
 
-    if (!senhaValida) {
-      return res.status(401).json({ message: 'Senha inválida' });
-    }
+		if (!senhaValida) {
+			// Mesma mensagem genérica para senha incorreta
+			return res.status(401).json({ message: "Credenciais inválidas" });
+		}
 
-    const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, {
-      expiresIn: '1h'
-    });
+		if (!process.env.JWT_SECRET) {
+			return res
+				.status(500)
+				.json({ message: "Erro interno: JWT_SECRET não configurado" });
+		}
 
-    return res.status(200).json({ token });
-  } catch (err) {
-    return res.status(500).json({ message: 'Erro no login', error: err.message });
-  }
+		// Token com payload mínimo (id do usuário)
+		const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+			expiresIn: "1h",
+		});
+
+		return res.status(200).json({ token });
+	} catch (err) {
+		return res
+			.status(500)
+			.json({ message: "Erro no login", error: err.message });
+	}
 };
