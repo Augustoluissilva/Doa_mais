@@ -1,0 +1,144 @@
+/* Estilos gerais */
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+/* Cabeçalho */
+.about-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.about-logo {
+  max-width: 150px;
+  margin-bottom: 1rem;
+}
+
+.about-title {
+  color: #B22222;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Seções */
+.about-section {
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+
+.about-section-title {
+  color: #B22222;
+  border-bottom: 2px solid #B22222;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.about-highlight-text {
+  background-color: #FFF0F0;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid #B22222;
+  margin: 2rem 0;
+  font-weight: 500;
+}
+
+/* Grid da equipe */
+.about-team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.about-team-card {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+
+.about-team-card:hover {
+  transform: translateY(-5px);
+}
+
+.about-member-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1rem;
+  border: 3px solid #B22222;
+}
+
+.about-member-name {
+  color: #B22222;
+  margin-bottom: 0.5rem;
+}
+
+.about-member-role {
+  color: #666;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.about-member-bio {
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.about-social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.about-social-link {
+  color: #B22222;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.about-social-link:hover {
+  color: #8B0000;
+}
+
+/* Rodapé */
+.about-footer {
+  text-align: center;
+  margin-top: 4rem;
+  padding: 2rem 0;
+  border-top: 1px solid #eee;
+}
+
+.about-impact-phrase {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #B22222;
+  margin-bottom: 1.5rem;
+}
+
+.about-copyright {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .about-title {
+    font-size: 2rem;
+  }
+  
+  .about-team-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .about-impact-phrase {
+    font-size: 1.2rem;
+  }
+}

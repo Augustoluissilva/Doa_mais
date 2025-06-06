@@ -39,10 +39,17 @@ const UserIcon = ({ size = 24, color = "#E63946" }) => (
   <span style={{ fontSize: size, color }}>👤</span>
 );
 
+const ClickIcon = ({ size = 24, color = "#E63946" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill={color} xmlns="http://www.w3.org/2000/svg">
+    <path d="M11 4.5V2.5C11 2.224 11.224 2 11.5 2C11.776 2 12 2.224 12 2.5V4.5C12 4.776 11.776 5 11.5 5C11.224 5 11 4.776 11 4.5ZM15.5 3C15.224 3 15 3.224 15 3.5V5.5C15 5.776 15.224 6 15.5 6C15.776 6 16 5.776 16 5.5V3.5C16 3.224 15.776 3 15.5 3ZM7.5 3C7.224 3 7 3.224 7 3.5V5.5C7 5.776 7.224 6 7.5 6C7.776 6 8 5.776 8 5.5V3.5C8 3.224 7.776 3 7.5 3ZM4.5 6C4.224 6 4 6.224 4 6.5V8.5C4 8.776 4.224 9 4.5 9C4.776 9 5 8.776 5 8.5V6.5C5 6.224 4.776 6 4.5 6ZM18.5 6C18.224 6 18 6.224 18 6.5V8.5C18 8.776 18.224 9 18.5 9C18.776 9 19 8.776 19 8.5V6.5C19 6.224 18.776 6 18.5 6ZM2 10.5V12.5C2 12.776 2.224 13 2.5 13C2.776 13 3 12.776 3 12.5V10.5C3 10.224 2.776 10 2.5 10C2.224 10 2 10.224 2 10.5ZM21 10.5V12.5C21 12.776 21.224 13 21.5 13C21.776 13 22 12.776 22 12.5V10.5C22 10.224 21.776 10 21.5 10C21.224 10 21 10.224 21 10.5ZM11.5 14C11.224 14 11 14.224 11 14.5V16.5C11 16.776 11.224 17 11.5 17C11.776 17 12 16.776 12 16.5V14.5C12 14.224 11.776 14 11.5 14ZM15.5 14C15.224 14 15 14.224 15 14.5V16.5C15 16.776 15.224 17 15.5 17C15.776 17 16 16.776 16 16.5V14.5C16 14.224 15.776 14 15.5 14ZM7.5 14C7.224 14 7 14.224 7 14.5V16.5C7 16.776 7.224 17 7.5 17C7.776 17 8 16.776 8 16.5V14.5C8 14.224 7.776 14 7.5 14ZM4.5 17C4.224 17 4 17.224 4 17.5V19.5C4 19.776 4.224 20 4.5 20C4.776 20 5 19.776 5 19.5V17.5C5 17.224 4.776 17 4.5 17ZM18.5 17C18.224 17 18 17.224 18 17.5V19.5C18 19.776 18.224 20 18.5 20C18.776 20 19 19.776 19 19.5V17.5C19 17.224 18.776 17 18.5 17ZM2 21.5V19.5C2 19.224 2.224 19 2.5 19C2.776 19 3 19.224 3 19.5V21.5C3 21.776 2.776 22 2.5 22C2.224 22 2 21.776 2 21.5ZM21 21.5V19.5C21 19.224 21.224 19 21.5 19C21.776 19 22 19.224 22 19.5V21.5C22 21.776 21.776 22 21.5 22C21.224 22 21 21.776 21 21.5Z"/>
+  </svg>
+);
+
 const HomeScreen = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeTab, setActiveTab] = useState('Salva vidas');
   const navigate = useNavigate();
   
   // Dados dos hemocentros do estado de São Paulo
@@ -118,6 +125,14 @@ const HomeScreen = () => {
     }
   ];
 
+  // Conteúdo das abas
+  const tabContents = {
+    'Salva vidas': 'Cada doação de sangue pode ajudar a salvar várias vidas, já que o sangue doado é separado em componentes – Concentrado de Hemácias (CH), Concentrado de Plaquetas (CP), Plasma Fresco Congelado (PFC) e Crioprecipitado (CRIO) – que podem ser utilizados em diferentes tratamentos.',
+    'Estoque seguro': 'A doação de sangue regular é essencial para manter os estoques nos hemocentros em níveis seguros.',
+    'Ato de cidadania': 'A doação é um ato altruísta, que ajuda pessoas desconhecidas. A maioria das doações é voluntária e, por isso, são seguras e feitas sem nenhum interesse financeiro.',
+    'Evitar desabastecimento': 'A doação de sangue regular é essencial para manter os estoques nos hemocentros para os atendimentos de sangramentos agudos em casos de urgências e emergências, realização de cirurgias de grande porte e tratamentos de doenças crônicas que frequentemente demandam transfusões sanguíneas; e também na produção de medicamentos essenciais derivados do plasma.'
+  };
+
   // Controle do carrossel automático
   useEffect(() => {
     const interval = setInterval(() => {
@@ -185,7 +200,7 @@ const HomeScreen = () => {
         </div>
         
         <ul className={`navbar-menu ${menuOpen ? 'active' : ''}`}>
-          <li className="menu-item active" onClick={() => handleNavigation('/')}>Início</li>
+          <li className="menu-item active" onClick={() => handleNavigation('/home')}>Início</li>
           <li className="menu-item" onClick={() => handleNavigation('/agendar')}>Agendar Doação</li>
           <li className="menu-item" onClick={() => handleNavigation('/dashboard')}>Consultar Estoque</li>
           <li className="menu-item" onClick={() => handleNavigation('/sobre')}>Sobre nós</li>
@@ -272,53 +287,36 @@ const HomeScreen = () => {
           </div>
         </section>
 
-        {/* Seção de Exemplos */}
-        <section className="examples-section">
-          <h2>Clique em cada exemplo e saiba a importância da doação de sangue:</h2>
-          <div className="examples-grid">
-            <div 
-              className="example-card" 
-              onClick={() => handleNavigation('/importancia/emergencia')}
-              role="button"
-              tabIndex="0"
-            >
-              <h4>Situação de emergência</h4>
-              <p>Casos de acidentes com grandes perdas de sangue</p>
+        {/* Nova Seção de Abas Interativas */}
+        <section className="tabs-section">
+          <div className="tabs-header">
+            <ClickIcon size={24} color="#E63946" />
+            <h2>Clique em cada exemplo e saiba a importância da doação de sangue:</h2>
+          </div>
+          
+          <div className="tabs-container">
+            <div className="tabs-buttons">
+              {Object.keys(tabContents).map((tab) => (
+                <button
+                  key={tab}
+                  className={`tab-button ${activeTab === tab ? 'active' : ''}`}
+                  onClick={() => setActiveTab(tab)}
+                >
+                  {tab}
+                </button>
+              ))}
             </div>
-            <div 
-              className="example-card"
-              onClick={() => handleNavigation('/importancia/doencas-cronicas')}
-              role="button"
-              tabIndex="0"
-            >
-              <h4>Doenças crônicas</h4>
-              <p>Pacientes que necessitam de transfusões regulares</p>
-            </div>
-            <div 
-              className="example-card"
-              onClick={() => handleNavigation('/importancia/cirurgias')}
-              role="button"
-              tabIndex="0"
-            >
-              <h4>Cirurgias complexas</h4>
-              <p>Procedimentos que podem requerer reserva de sangue</p>
-            </div>
-            <div 
-              className="example-card"
-              onClick={() => handleNavigation('/importancia/recem-nascidos')}
-              role="button"
-              tabIndex="0"
-            >
-              <h4>Recém-nascidos</h4>
-              <p>Bebês prematuros que necessitam de cuidados especiais</p>
+            
+            <div className="tab-content">
+              <p>{tabContents[activeTab]}</p>
             </div>
           </div>
         </section>
 
         {/* Seção de Hemocentros */}
         <section className="blood-centers-section">
-          <h2>Principais hemocentros no estado de São Paulo</h2>
-          <p>Conheça os principais centros de doação no estado de São Paulo e seu estoque atual</p>
+          <h2>Principais hemocentros no Vale do Paraíba</h2>
+          <p>Conheça os principais centros de doação no Vale do Paraíba e seu estoque atual</p>
           
           <div className="centers-grid">
             {bloodCenters.map(center => (
@@ -441,7 +439,7 @@ const HomeScreen = () => {
           <div className="link-group">
             <h4>Navegação</h4>
             <ul>
-              <li onClick={() => handleNavigation('/')}>Início</li>
+              <li onClick={() => handleNavigation('/home')}>Início</li>
               <li onClick={() => handleNavigation('/agendar')}>Agendar Doação</li>
               <li onClick={() => handleNavigation('/dashboard')}>Consultar Estoque</li>
               <li onClick={() => handleNavigation('/sobre')}>Sobre nós</li>

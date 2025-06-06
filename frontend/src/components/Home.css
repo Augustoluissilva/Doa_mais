@@ -446,89 +446,8 @@ body {
   color: var(--secondary-color);
 }
 
-/* Responsividade para a seção Sobre Doação */
-@media (max-width: 1024px) {
-  .about-donation-section {
-    padding: 5rem 2rem 3rem;
-  }
-  
-  .about-donation-header {
-    margin-top: -5rem;
-    padding: 3rem 1.5rem;
-  }
-  
-  .about-donation-header h2 {
-    font-size: 2.2rem;
-  }
-  
-  .about-card {
-    padding: 2.2rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .about-donation-section {
-    padding: 4rem 1.5rem 2rem;
-    margin-top: 1rem;
-  }
-  
-  .about-donation-header {
-    margin-top: -4rem;
-    padding: 2.5rem 1.5rem;
-    border-radius: 10px;
-  }
-  
-  .about-donation-header h2 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .about-donation-header p {
-    font-size: 1rem;
-  }
-  
-  .about-cards-container {
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-  
-  .about-card {
-    padding: 2rem;
-    margin-top: 1rem;
-  }
-  
-  .about-card h3 {
-    font-size: 1.4rem;
-  }
-  
-  .about-card li {
-    font-size: 1rem;
-    padding-left: 2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .about-donation-header {
-    padding: 2rem 1rem;
-    border-radius: 8px;
-  }
-  
-  .about-donation-header h2 {
-    font-size: 1.8rem;
-  }
-  
-  .about-card {
-    padding: 1.8rem 1.5rem;
-    border-radius: 12px;
-  }
-  
-  .about-icon.heart {
-    font-size: 4rem;
-  }
-}
-
-/* Seção de Exemplos */
-.examples-section {
+/* Seção de Abas Interativas */
+.tabs-section {
   padding: 4rem 2rem;
   background-color: var(--white);
   max-width: 1440px;
@@ -536,47 +455,61 @@ body {
   width: 100%;
 }
 
-.examples-section h2 {
-  font-size: 2.2rem;
+.tabs-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+}
+
+.tabs-header h2 {
+  font-size: 1.8rem;
   color: var(--secondary-color);
-  margin-bottom: 1.5rem;
-  text-align: center;
   font-weight: 600;
 }
 
-.examples-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
+.tabs-container {
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.example-card {
+.tabs-buttons {
+  display: flex;
   background-color: var(--light-gray);
-  border-radius: 8px;
-  padding: 1.8rem;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  cursor: pointer;
-  border: 1px solid rgba(230, 57, 70, 0.05);
 }
 
-.example-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(230, 57, 70, 0.1);
-  border-color: rgba(230, 57, 70, 0.2);
-}
-
-.example-card h4 {
-  color: var(--primary-color);
-  margin-bottom: 0.8rem;
-  font-size: 1.2rem;
-}
-
-.example-card p {
+.tab-button {
+  flex: 1;
+  padding: 1rem 0.5rem;
+  border: none;
+  background-color: var(--medium-gray);
   color: var(--dark-gray);
-  font-size: 0.95rem;
-  line-height: 1.5;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.tab-button:hover {
+  background-color: var(--primary-light);
+  color: var(--white);
+}
+
+.tab-button.active {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.tab-content {
+  padding: 2rem;
+  background-color: var(--white);
+  line-height: 1.8;
+  color: var(--dark-gray);
 }
 
 /* Seção de Hemocentros */
@@ -1031,6 +964,10 @@ body {
   .banner-content h1 {
     font-size: 2.5rem;
   }
+  
+  .tabs-header h2 {
+    font-size: 1.6rem;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -1065,6 +1002,11 @@ body {
   
   .footer-content {
     grid-template-columns: 1fr 1fr;
+  }
+  
+  .tabs-header {
+    flex-direction: column;
+    text-align: center;
   }
 }
 
@@ -1153,6 +1095,16 @@ body {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
+  
+  .tabs-buttons {
+    flex-wrap: wrap;
+  }
+  
+  .tab-button {
+    flex: 1 0 50%;
+    padding: 0.8rem 0.5rem;
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1168,10 +1120,6 @@ body {
     height: 200px;
   }
   
-  .examples-grid {
-    grid-template-columns: 1fr;
-  }
-  
   .navbar {
     padding: 1rem;
   }
@@ -1185,5 +1133,19 @@ body {
     width: 36px;
     height: 36px;
     font-size: 1rem;
+  }
+  
+  .tabs-header h2 {
+    font-size: 1.4rem;
+  }
+  
+  .tab-button {
+    flex: 1 0 100%;
+    padding: 0.7rem 0.5rem;
+    font-size: 0.85rem;
+  }
+  
+  .tab-content {
+    padding: 1.5rem;
   }
 }

@@ -4,7 +4,7 @@ import LandingPage from './components/LandingPage';
 import Home from './components/Home';
 import LoginCadastro from './components/LoginCadastro';
 import AgendamentoDoacao from './components/AgendamentoDoacao';
-
+import Sobre from './components/Sobre'; // Importe o componente Sobre
 import './App.css';
 
 function App() {
@@ -17,17 +17,16 @@ function App() {
         {/* Rota pública - Login/Cadastro */}
         <Route path="/login" element={<LoginCadastro />} />
         
-        {/* Rotas da área logada (sem proteção por enquanto) */}
+        {/* Rotas da área logada */}
         <Route path="/home" element={<Home />} />
-        
         <Route path="/agendar" element={<AgendamentoDoacao />} />
+        <Route path="/sobre" element={<Sobre />} />
         
-       
+        {/* Nova rota pública - Sobre o projeto */}
+        <Route path="/sobre" element={<Sobre />} />
         
-        {/* Redirecionamento para padronizar a rota de login */}
+        {/* Redirecionamentos */}
         <Route path="/LoginCadastro" element={<Navigate to="/login" replace />} />
-        
-        {/* Página não encontrada - Redireciona para landing page */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
