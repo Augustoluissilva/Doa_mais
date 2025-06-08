@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
 import './Home.css';
-
-const DoePlusLogo = () => (
-  <img 
-    src="/images/doa+02.png" 
-    alt="Doa+ Logo" 
-    className="logo-image"
-  />
-);
 
 // Componentes de ícone
 const HeartIcon = ({ size = 24, color = "#E63946" }) => (
@@ -35,10 +28,6 @@ const TestimonialIcon = ({ size = 24, color = "#E63946" }) => (
   <span style={{ fontSize: size, color }}>💬</span>
 );
 
-const UserIcon = ({ size = 24, color = "#E63946" }) => (
-  <span style={{ fontSize: size, color }}>👤</span>
-);
-
 const ClickIcon = ({ size = 24, color = "#E63946" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill={color} xmlns="http://www.w3.org/2000/svg">
     <path d="M11 4.5V2.5C11 2.224 11.224 2 11.5 2C11.776 2 12 2.224 12 2.5V4.5C12 4.776 11.776 5 11.5 5C11.224 5 11 4.776 11 4.5ZM15.5 3C15.224 3 15 3.224 15 3.5V5.5C15 5.776 15.224 6 15.5 6C15.776 6 16 5.776 16 5.5V3.5C16 3.224 15.776 3 15.5 3ZM7.5 3C7.224 3 7 3.224 7 3.5V5.5C7 5.776 7.224 6 7.5 6C7.776 6 8 5.776 8 5.5V3.5C8 3.224 7.776 3 7.5 3ZM4.5 6C4.224 6 4 6.224 4 6.5V8.5C4 8.776 4.224 9 4.5 9C4.776 9 5 8.776 5 8.5V6.5C5 6.224 4.776 6 4.5 6ZM18.5 6C18.224 6 18 6.224 18 6.5V8.5C18 8.776 18.224 9 18.5 9C18.776 9 19 8.776 19 8.5V6.5C19 6.224 18.776 6 18.5 6ZM2 10.5V12.5C2 12.776 2.224 13 2.5 13C2.776 13 3 12.776 3 12.5V10.5C3 10.224 2.776 10 2.5 10C2.224 10 2 10.224 2 10.5ZM21 10.5V12.5C21 12.776 21.224 13 21.5 13C21.776 13 22 12.776 22 12.5V10.5C22 10.224 21.776 10 21.5 10C21.224 10 21 10.224 21 10.5ZM11.5 14C11.224 14 11 14.224 11 14.5V16.5C11 16.776 11.224 17 11.5 17C11.776 17 12 16.776 12 16.5V14.5C12 14.224 11.776 14 11.5 14ZM15.5 14C15.224 14 15 14.224 15 14.5V16.5C15 16.776 15.224 17 15.5 17C15.776 17 16 16.776 16 16.5V14.5C16 14.224 15.776 14 15.5 14ZM7.5 14C7.224 14 7 14.224 7 14.5V16.5C7 16.776 7.224 17 7.5 17C7.776 17 8 16.776 8 16.5V14.5C8 14.224 7.776 14 7.5 14ZM4.5 17C4.224 17 4 17.224 4 17.5V19.5C4 19.776 4.224 20 4.5 20C4.776 20 5 19.776 5 19.5V17.5C5 17.224 4.776 17 4.5 17ZM18.5 17C18.224 17 18 17.224 18 17.5V19.5C18 19.776 18.224 20 18.5 20C18.776 20 19 19.776 19 19.5V17.5C19 17.224 18.776 17 18.5 17ZM2 21.5V19.5C2 19.224 2.224 19 2.5 19C2.776 19 3 19.224 3 19.5V21.5C3 21.776 2.776 22 2.5 22C2.224 22 2 21.776 2 21.5ZM21 21.5V19.5C21 19.224 21.224 19 21.5 19C21.776 19 22 19.224 22 19.5V21.5C22 21.776 21.776 22 21.5 22C21.224 22 21 21.776 21 21.5Z"/>
@@ -46,7 +35,6 @@ const ClickIcon = ({ size = 24, color = "#E63946" }) => (
 );
 
 const HomeScreen = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeTab, setActiveTab] = useState('Salva vidas');
@@ -154,13 +142,8 @@ const HomeScreen = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-
   const handleNavigation = (path) => {
     navigate(path);
-    setMenuOpen(false);
     window.scrollTo(0, 0);
   };
 
@@ -186,38 +169,9 @@ const HomeScreen = () => {
 
   return (
     <div className="home-container">
-      {/* Menu Superior Fixo */}
-      <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
-        <div className="navbar-logo" onClick={() => handleNavigation('/')}>
-          <DoePlusLogo />
-        </div>
-        
-        {/* Hamburger Icon */}
-        <div className="hamburger" onClick={toggleMenu}>
-          <div className={`hamburger-line ${menuOpen ? 'open' : ''}`}></div>
-          <div className={`hamburger-line ${menuOpen ? 'open' : ''}`}></div>
-          <div className={`hamburger-line ${menuOpen ? 'open' : ''}`}></div>
-        </div>
-        
-        <ul className={`navbar-menu ${menuOpen ? 'active' : ''}`}>
-          <li className="menu-item active" onClick={() => handleNavigation('/home')}>Início</li>
-          <li className="menu-item" onClick={() => handleNavigation('/agendar')}>Agendar Doação</li>
-          <li className="menu-item" onClick={() => handleNavigation('/dashboard')}>Consultar Estoque</li>
-          <li className="menu-item" onClick={() => handleNavigation('/sobre')}>Sobre nós</li>
-          <li className="menu-item" onClick={() => handleNavigation('/contato')}>Contato</li>
-          <li className="mobile-menu-item">
-            <button className="profile-button mobile" onClick={() => handleNavigation('/perfil')}>
-              <UserIcon size={16} color="#fff" />
-              <span>Perfil</span>
-            </button>
-          </li>
-        </ul>
-        
-        <button className="profile-button desktop" onClick={() => handleNavigation('/perfil')}>
-          <UserIcon size={20} color="#E63946" />
-        </button>
-      </nav>
-
+      {/* Nova Navbar com estilos incorporados */}
+      <Navbar isScrolled={isScrolled} />
+      
       <div className="main-content">
         {/* Banner Principal */}
         <section className="hero-banner">
@@ -486,7 +440,13 @@ const HomeScreen = () => {
       <footer className="site-footer">
         <div className="footer-content">
           <div className="footer-brand">
-            <DoePlusLogo onClick={() => handleNavigation('/')} style={{cursor: 'pointer'}} />
+            <img 
+              src="/images/doa+02.png" 
+              alt="Doa+ Logo" 
+              className="logo-image"
+              onClick={() => handleNavigation('/')}
+              style={{cursor: 'pointer'}} 
+            />
             <p>Conectando doadores a quem precisa no estado de São Paulo</p>
             <div className="newsletter-form">
               <input 
