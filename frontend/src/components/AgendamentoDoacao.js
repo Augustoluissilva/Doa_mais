@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import api from "../api";
-import "./AgendamentoDoacao.css";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
+import "./AgendamentoDoacao.css";
 
 const AgendamentoDoacao = () => {
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ const AgendamentoDoacao = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [appointmentId, setAppointmentId] = useState(null);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   // Formatadores
   const formatarCPF = (cpf) => {
@@ -252,6 +254,7 @@ const AgendamentoDoacao = () => {
   if (loading) {
     return (
       <div className="agendamento-page">
+        <Navbar isScrolled={isScrolled} />
         <div className="overlay">
           <div className="spinner"></div>
           <p>Processando seu agendamento...</p>
@@ -263,6 +266,7 @@ const AgendamentoDoacao = () => {
   if (error) {
     return (
       <div className="agendamento-page">
+        <Navbar isScrolled={isScrolled} />
         <div className="agendamento-container">
           <div className="agendamento-card erro">
             <h2>Erro no Agendamento</h2>
@@ -282,6 +286,7 @@ const AgendamentoDoacao = () => {
   if (submitted) {
     return (
       <div className="agendamento-page">
+        <Navbar isScrolled={isScrolled} />
         <div className="agendamento-container">
           <div className="agendamento-card sucesso">
             <h2>Agendamento realizado com sucesso!</h2>
@@ -345,29 +350,7 @@ const AgendamentoDoacao = () => {
 
   return (
     <div className="agendamento-page">
-      <nav className="navbar">
-        <div className="navbar-logo">DDA3</div>
-        <div className="navbar-links">
-          <a href="/perfil" className="navbar-link">
-            Perfil
-          </a>
-          <a href="/home" className="navbar-link">
-            Inicio
-          </a>
-          <a href="/hemocentros" className="navbar-link">
-            Hemocentros
-          </a>
-          <a href="/noticias" className="navbar-link">
-            Noticias
-          </a>
-          <a href="/contato" className="navbar-link">
-            Contato
-          </a>
-          <a href="/sair" className="navbar-link">
-            Sair
-          </a>
-        </div>
-      </nav>
+      <Navbar isScrolled={isScrolled} />
 
       <div className="agendamento-container">
         <div className="agendamento-card">
