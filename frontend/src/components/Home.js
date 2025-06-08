@@ -313,6 +313,74 @@ const HomeScreen = () => {
           </div>
         </section>
 
+        {/* Nova Seção de Cards de Etapas */}
+        <section className="donation-steps-section">
+          <h2>Etapas da doação de sangue</h2>
+          <p>Conheça o processo completo de doação de sangue</p>
+          
+          <div className="steps-cards-container">
+            {/* Card 1 */}
+            <div className="step-card">
+              <div className="step-card-header">
+                <h3>RECEPÇÃO E CADASTRO</h3>
+              </div>
+              <div className="step-card-content">
+                <p>O doador é recebido e realiza o cadastro ou atualização de dados. Apresentação de documento oficial com foto.</p>
+              </div>
+            </div>
+            
+            {/* Card 2 */}
+            <div className="step-card">
+              <div className="step-card-header">
+                <h3>TRIAGEM CLÍNICA</h3>
+              </div>
+              <div className="step-card-content">
+                <p>Entrevista confidencial para avaliar condições de saúde, hábitos e histórico médico. Verificação de peso, pressão arterial, temperatura e pulso.</p>
+              </div>
+            </div>
+            
+            {/* Card 3 */}
+            <div className="step-card">
+              <div className="step-card-header">
+                <h3>COLETA</h3>
+              </div>
+              <div className="step-card-content">
+                <p>Coleta de aproximadamente 450ml de sangue e amostras para testes. Processo seguro, com material descartável e dura em média 10 minutos.</p>
+              </div>
+            </div>
+            
+            {/* Card 4 */}
+            <div className="step-card">
+              <div className="step-card-header">
+                <h3>LANCHE</h3>
+              </div>
+              <div className="step-card-content">
+                <p>Após a doação, o voluntário recebe um lanche para repor energias. Recomenda-se ingerir líquidos e evitar esforços físicos nas próximas horas.</p>
+              </div>
+            </div>
+            
+            {/* Card 5 */}
+            <div className="step-card">
+              <div className="step-card-header">
+                <h3>APÓS A DOAÇÃO</h3>
+              </div>
+              <div className="step-card-content">
+                <p>Repouso breve no local. Orientações sobre cuidados pós-doção. Intervalo mínimo de 60 dias entre doações para homens e 90 dias para mulheres.</p>
+              </div>
+            </div>
+            
+            {/* Card 6 */}
+            <div className="step-card">
+              <div className="step-card-header">
+                <h3>RESULTADOS DE EXAMES</h3>
+              </div>
+              <div className="step-card-content">
+                <p>O sangue doado passa por testes sorológicos e o doador é informado sobre qualquer alteração relevante. Os resultados ficam disponíveis em alguns dias.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Seção de Hemocentros */}
         <section className="blood-centers-section">
           <h2>Principais hemocentros no Vale do Paraíba</h2>

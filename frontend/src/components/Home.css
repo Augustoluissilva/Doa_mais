@@ -512,6 +512,87 @@ body {
   color: var(--dark-gray);
 }
 
+/* NOVA SEÇÃO DE CARDS DE ETAPAS */
+.donation-steps-section {
+  padding: 4rem 2rem;
+  background-color: var(--light-gray);
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.donation-steps-section h2 {
+  font-size: 2.2rem;
+  color: var(--secondary-color);
+  margin-bottom: 0.5rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.donation-steps-section p {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--dark-gray);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.steps-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 2rem auto 0;
+}
+
+.step-card {
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid rgba(230, 57, 70, 0.1);
+}
+
+.step-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(230, 57, 70, 0.1);
+}
+
+.step-card-header {
+  padding: 1.5rem;
+  background: var(--white);
+  border-bottom: 3px solid var(--primary-color);
+}
+
+.step-card-header h3 {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.step-card-content {
+  padding: 1.5rem;
+  background: var(--primary-color);
+  color: var(--white);
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+}
+
+.step-card-content p {
+  color: var(--white);
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
 /* Seção de Hemocentros */
 .blood-centers-section {
   padding: 4rem 2rem;
@@ -1008,6 +1089,11 @@ body {
     flex-direction: column;
     text-align: center;
   }
+
+  /* Ajustes para os cards de etapas */
+  .steps-cards-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
@@ -1105,6 +1191,25 @@ body {
     padding: 0.8rem 0.5rem;
     font-size: 0.9rem;
   }
+
+  /* Ajustes para os cards de etapas */
+  .steps-cards-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .donation-steps-section {
+    padding: 3rem 1.5rem;
+  }
+  
+  .donation-steps-section h2 {
+    font-size: 1.8rem;
+  }
+  
+  .step-card-content {
+    min-height: auto;
+    padding: 1.2rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1147,5 +1252,26 @@ body {
   
   .tab-content {
     padding: 1.5rem;
+  }
+
+  /* Ajustes finos para os cards de etapas */
+  .donation-steps-section {
+    padding: 2rem 1rem;
+  }
+  
+  .donation-steps-section h2 {
+    font-size: 1.6rem;
+  }
+  
+  .step-card-header {
+    padding: 1rem;
+  }
+  
+  .step-card-header h3 {
+    font-size: 1.1rem;
+  }
+  
+  .step-card-content p {
+    font-size: 0.95rem;
   }
 }
