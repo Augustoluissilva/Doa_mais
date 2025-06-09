@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
+import Footer from './Footer';
 import "./AgendamentoDoacao.css";
 
 const AgendamentoDoacao = () => {
@@ -821,16 +822,8 @@ const AgendamentoDoacao = () => {
         </div>
       </div>
 
-      <footer className="footer">
-        <div className="footer-content">
-          <p>© 2023 DDA3 - Sistema de Doação de Sangue</p>
-          <div className="footer-links">
-            <a href="/termos">Termos de Uso</a>
-            <a href="/privacidade">Política de Privacidade</a>
-            <a href="/contato">Contato</a>
-          </div>
-        </div>
-      </footer>
+        {/*rodapé*/}   
+      <Footer />
     </div>
   );
 };

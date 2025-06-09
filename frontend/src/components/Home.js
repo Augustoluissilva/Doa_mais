@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
+import Footer from './Footer'; // Import the Footer component
 import './Home.css';
 
 // Componentes de ícone
@@ -169,7 +170,7 @@ const HomeScreen = () => {
 
   return (
     <div className="home-container">
-      {/* Nova Navbar com estilos incorporados */}
+      {/* Navbar */}
       <Navbar isScrolled={isScrolled} />
       
       <div className="main-content">
@@ -437,96 +438,7 @@ const HomeScreen = () => {
       </div>
 
       {/* Rodapé */}
-      <footer className="site-footer">
-        <div className="footer-content">
-          <div className="footer-brand">
-            <img 
-              src="/images/doa+02.png" 
-              alt="Doa+ Logo" 
-              className="logo-image"
-              onClick={() => handleNavigation('/')}
-              style={{cursor: 'pointer'}} 
-            />
-            <p>Conectando doadores a quem precisa no estado de São Paulo</p>
-            <div className="newsletter-form">
-              <input 
-                type="email" 
-                placeholder="Seu e-mail" 
-                className="newsletter-input" 
-                aria-label="Assinar newsletter"
-              />
-              <button 
-                className="newsletter-button"
-                aria-label="Assinar"
-              >
-                Assinar
-              </button>
-            </div>
-          </div>
-          
-          <div className="link-group">
-            <h4>Navegação</h4>
-            <ul>
-              <li onClick={() => handleNavigation('/home')}>Início</li>
-              <li onClick={() => handleNavigation('/agendar')}>Agendar Doação</li>
-              <li onClick={() => handleNavigation('/dashboard')}>Consultar Estoque</li>
-              <li onClick={() => handleNavigation('/sobre')}>Sobre nós</li>
-              <li onClick={() => handleNavigation('/contato')}>Contato</li>
-            </ul>
-          </div>
-          
-          <div className="link-group">
-            <h4>Informações</h4>
-            <ul>
-              <li onClick={() => handleNavigation('/requisitos')}>Quem pode doar</li>
-              <li onClick={() => handleNavigation('/processo')}>Processo de doação</li>
-              <li onClick={() => handleNavigation('/beneficios')}>Benefícios</li>
-              <li onClick={() => handleNavigation('/faq')}>Dúvidas frequentes</li>
-            </ul>
-          </div>
-          
-          <div className="link-group">
-            <h4>Contato</h4>
-            <ul>
-              <li>(11) 4567-8901</li>
-              <li>contato@doesanguesp.org</li>
-              <li>Atendimento: 8h-18h</li>
-              <li onClick={() => handleNavigation('/localizacao')}>Encontre um hemocentro</li>
-            </ul>
-          </div>
-        </div>
-        
-        <div className="footer-social">
-          <span>Siga-nos:</span>
-          <div className="social-icons">
-            <span 
-              className="social-icon"
-              onClick={() => window.open('https://facebook.com', '_blank')}
-              aria-label="Facebook"
-            >
-              f
-            </span>
-            <span 
-              className="social-icon"
-              onClick={() => window.open('https://instagram.com', '_blank')}
-              aria-label="Instagram"
-            >
-              in
-            </span>
-            <span 
-              className="social-icon"
-              onClick={() => window.open('https://twitter.com', '_blank')}
-              aria-label="Twitter"
-            >
-              t
-            </span>
-          </div>
-        </div>
-        
-        <div className="footer-copyright">
-          <p>© {new Date().getFullYear()} Doe Sangue SP - Todos os direitos reservados</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

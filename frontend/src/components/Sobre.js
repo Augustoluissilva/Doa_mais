@@ -1,9 +1,9 @@
 import React from 'react';
 import { FaInstagram, FaLinkedin } from 'react-icons/fa';
-import Navbar from './Navbar'; // Import the Navbar component
+import Navbar from './Navbar';
+import Footer from './Footer';
 import './Sobre.css';
 
-// Dados da equipe (pode ser substituído por dados do banco)
 const teamMembers = [
   {
     nome: "Luis Augusto",
@@ -39,12 +39,10 @@ const teamMembers = [
 
 const AboutPage = () => {
   return (
-    <div className="page-container">
-      {/* Add Navbar at the top */}
+    <div className="sobre-page">
       <Navbar />
       
-      <div className="about-container">
-       
+      <div className="sobre-content">
         <section className="about-section">
           <h2 className="about-section-title">O Projeto</h2>
           <p>
@@ -75,10 +73,10 @@ const AboutPage = () => {
                 <p className="about-member-role">{member.funcao}</p>
                 <p className="about-member-bio">{member.bio}</p>
                 <div className="about-social-links">
-                  <a href={member.redes.instagram} target="_blank" rel="noopener noreferrer" className="about-social-link">
+                  <a href={member.redes.instagram} target="_blank" rel="noopener noreferrer">
                     <FaInstagram />
                   </a>
-                  <a href={member.redes.linkedin} target="_blank" rel="noopener noreferrer" className="about-social-link">
+                  <a href={member.redes.linkedin} target="_blank" rel="noopener noreferrer">
                     <FaLinkedin />
                   </a>
                 </div>
@@ -86,13 +84,9 @@ const AboutPage = () => {
             ))}
           </div>
         </section>
-
-        <footer className="about-footer">
-          <p className="about-impact-phrase">Doar sangue é doar vida. Doe Mais, sempre que puder.</p>
-          <p className="about-copyright">Doa Mais © {new Date().getFullYear()}</p>
-          <p className="about-copyright">Contato: contato@doamais.org.br</p>
-        </footer>
       </div>
+
+      <Footer />
     </div>
   );
 };
